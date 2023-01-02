@@ -13,24 +13,27 @@ function App() {
     //--> esto va a devolver un objeto que encontro, o si no existe, undefined.
   }
 
-  
+  const toggleTask = (task) => {
+    setTasksItems(
+      tasksItems.map((t) => (t.name === task.name ? { ...t, done: !t.done } : t))
+    );
+  };
+
   useEffect(() => {
-    let data = localStorage.getItem('tasks')
-    if(data){
-      setTasksItems( JSON.parse(data));
+    let data = localStorage.getItem("tasks");
+    if (data) {
+      setTasksItems(JSON.parse(data));
     }
-  }, [])
-  
+  }, []);
+
   useEffect(() => {
-    localStorage.setItem('tasks', JSON.stringify(tasksItems))
+    localStorage.setItem("tasks", JSON.stringify(tasksItems));
   }, [tasksItems]);
-  
 
   return (
     <div className="App">
       <TaskCreator createNewTask={createNewTask} />
-      <TaskTable
-      tasks = {tasksItems}/>
+      <TaskTable tasks={tasksItems} toggleTask={toggleTask}/>
     </div>
   );
 }

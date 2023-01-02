@@ -1,26 +1,20 @@
 import React from "react";
+import TaskRow from "./TaskRow";
 
-const TaskTable = ({tasks}) => {
+const TaskTable = ({ tasks,toggleTask }) => {
   return (
-    
-      <table>
-        <thead>
-          <tr>
-            <th> Taks</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tasks.map((task) => (
-            <tr key={task.name}>
-              <td>
-                {task.name}
-                <input type="checkbox" value={task.done}></input>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    
+    <table>
+      <thead>
+        <tr>
+          <th> Taks</th>
+        </tr>
+      </thead>
+      <tbody>
+        {tasks.map((task) => (
+          <TaskRow task={task} key={task.name} toggleTask={toggleTask}/>
+        ))}
+      </tbody>
+    </table>
   );
 };
 
