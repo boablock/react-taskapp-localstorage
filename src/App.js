@@ -6,18 +6,15 @@ import TaskTable from "./Components/TaskTable";
 function App() {
   const [tasksItems, setTasksItems] = useState([]);
 
-  function createNewTask(taskName) {
+  const createNewTask= taskName => { //--> agrega la tarea que no se haya guardado, validacion. 
     if (!tasksItems.find((task) => task.name === taskName)) {
       setTasksItems([...tasksItems, { name: taskName, done: false }]);
     }
-    //--> esto va a devolver un objeto que encontro, o si no existe, undefined.
   }
 
-  const toggleTask = (task) => {
-    setTasksItems(
-      tasksItems.map((t) => (t.name === task.name ? { ...t, done: !t.done } : t))
-    );
-  };
+  const toggleTask = task => { 
+    setTasksItems(tasksItems.map(t => (t.name === task.name) ? {...t, done: !t.done} : t))
+  }
 
   useEffect(() => {
     let data = localStorage.getItem("tasks");
@@ -32,8 +29,13 @@ function App() {
 
   return (
     <div className="App">
-      <TaskCreator createNewTask={createNewTask} />
-      <TaskTable tasks={tasksItems} toggleTask={toggleTask}/>
+      <TaskCreator 
+      createNewTask={createNewTask} 
+      />
+      <TaskTable 
+      tasks={tasksItems} 
+      toggleTask={toggleTask}
+      />
     </div>
   );
 }

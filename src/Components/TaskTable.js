@@ -1,17 +1,21 @@
 import React from "react";
 import TaskRow from "./TaskRow";
 
-const TaskTable = ({ tasks,toggleTask }) => {
+const TaskTable = ( {tasks,toggleTask} ) => {
   return (
     <table>
       <thead>
         <tr>
-          <th> Taks</th>
+          <th> Tasks</th>
         </tr>
       </thead>
       <tbody>
         {tasks.map((task) => (
-          <TaskRow task={task} key={task.name} toggleTask={toggleTask}/>
+          <TaskRow 
+          task={task} 
+          key={task.name} 
+          toggleTask={toggleTask}
+          />
         ))}
       </tbody>
     </table>
